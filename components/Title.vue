@@ -28,11 +28,21 @@ h2{
     line-height: 75px;
     letter-spacing: -1.65px;
     color: #242121;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 4px;
+        left: 0px;
+        top: 89px;
+        background: #FCBB08;
+    }
 }
 h2.md{
-    font-size: 34px;
+    font-size: 48px;
 }
 h2.lg{
-    font-size: 74px;
+    font-size: 60px;
 }
 </style>
