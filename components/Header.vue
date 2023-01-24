@@ -26,8 +26,10 @@ export default {
     align-items: center;
     position: fixed;
     width: 100%;
+    background: #fff;
 }
 .header_items{
+
     a{
         text-decoration: none;
         color: #373A39;
@@ -39,6 +41,7 @@ export default {
         letter-spacing: 0.6px;
         padding: 15px;
         transition: all .3s;
+        border-bottom: 1px solid transparent;
         &:first-child {
             border-bottom: 1px solid #FCBB08;
         }
