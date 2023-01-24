@@ -33,8 +33,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dayjs'],
+
+  axios: {
+    baseURL: 'http://localhost:8080/api/'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
