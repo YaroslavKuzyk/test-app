@@ -37,7 +37,10 @@
       <div class="section">
         <span class="section__title">Галерея</span>
         <div class="section__content">
-          <table class="gallery-table">
+          <div v-if="loader" class="loader-wrapper">
+            <Loader />
+          </div>
+          <table v-else class="gallery-table">
             <thead>
               <tr class="gallery-add">
                 <td class="text-left">
@@ -89,10 +92,8 @@
                 <td class="text-center">Дата</td>
               </tr>
             </thead>
-            <div v-if="loader" class="loader-wrapper">
-              <Loader />
-            </div>
-            <tbody v-else>
+
+            <tbody>
               <tr
                 class="gallery__item"
                 v-for="item in sortGallery"
@@ -270,202 +271,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.section {
-  margin-bottom: 60px;
-}
-.loader-wrapper {
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tab {
-  width: 100%;
-}
-
-.section__title {
-  display: block;
-  width: 100%;
-  font-size: 24px;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  color: rgb(120, 120, 120);
-  border-bottom: 2px solid rgb(120, 120, 120);
-}
-
-.category-list {
-  display: flex;
-  flex-direction: column;
-  height: 285px;
-  width: 100%;
-  margin-top: 15px;
-  overflow: auto;
-}
-
-.category {
-  display: flex;
-  flex-direction: column;
-}
-
-.plus-button {
-  background: rgb(42, 227, 237);
-  width: 30px;
-  height: 30px;
-  position: relative;
-  border: 0;
-  cursor: pointer;
-  border-radius: 8px;
-
-  &::after {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    top: calc(50% - 1px);
-    left: calc(50% - 10px);
-  }
-
-  &::before {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    top: 14px;
-    left: calc(50% - 10px);
-    transform: rotate(90deg);
-  }
-}
-
-.delete-button {
-  background: rgb(245, 56, 56);
-  width: 30px;
-  height: 30px;
-  position: relative;
-  border: 0;
-  cursor: pointer;
-  border-radius: 8px;
-
-  &::after {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    top: calc(50% - 1px);
-    left: calc(50% - 10px);
-    transform: rotate(-45deg);
-  }
-
-  &::before {
-    position: absolute;
-    content: "";
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    top: 14px;
-    left: calc(50% - 10px);
-    transform: rotate(945deg);
-  }
-}
-
-.admin-input {
-  height: 28px;
-  width: 100%;
-  border: 1px solid rgb(120, 120, 120);
-  border-radius: 8px;
-  padding: 0 10px;
-}
-
-.category-add {
-  display: flex;
-
-  .admin-input {
-    margin-right: 15px;
-  }
-}
-.category-list__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-
-  &:hover {
-    background: rgb(241, 241, 241);
-  }
-}
-
-.gallery-table {
-  width: 100%;
-}
-
-.gallery-img {
-  height: 50px;
-}
-
-.text-left {
-  text-align: left;
-}
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
-.select {
-  display: inline-block;
-  position: relative;
-  min-width: 150px;
-}
-.select__header {
-  background: rgb(42, 227, 237);
-  padding: 10px;
-  color: #fff;
-  cursor: pointer;
-}
-.select__content {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  display: none;
-  height: 200px;
-  overflow: auto;
-  flex-direction: column;
-  border-top: 2px solid #fff;
-  background: rgb(42, 227, 237);
-  color: #fff;
-}
-.select__content.active {
-  display: flex;
-}
-
-.select__item {
-  padding: 5px 10px;
-  cursor: pointer;
-  &:hover {
-    background: rgb(101, 210, 216);
-  }
-}
-
-.upload-gallery {
-  img {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-  }
-
-  input {
-    display: none;
-  }
-}
-.gallery-add td {
-  padding: 20px 0;
-}
-
-.gallery-thed td {
-  padding-bottom: 20px;
-}
+@import "@/assets/styles/admin/admin.scss";
 </style>
