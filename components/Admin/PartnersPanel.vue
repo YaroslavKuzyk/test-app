@@ -11,12 +11,17 @@
             />
             <button class="plus-button" @click="addItem"></button>
           </div>
-          <div class="parnters__item" v-for="item in items" :key="item._id">
-            <img :src="`http://localhost:8080/${item.picture}`" />
-            <button
-              class="delete-button"
-              @click="deleteItem(item._id)"
-            ></button>
+          <div v-if="loader" class="loader-wrapper">
+            <Loader />
+          </div>
+          <div v-else>
+            <div class="parnters__item" v-for="item in items" :key="item._id">
+              <img :src="`http://localhost:8080/${item.picture}`" />
+              <button
+                class="delete-button"
+                @click="deleteItem(item._id)"
+              ></button>
+            </div>
           </div>
         </div>
       </div>

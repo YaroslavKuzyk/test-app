@@ -22,6 +22,7 @@
       <SliderPanel v-if="tab == 'slider'" />
       <PartnersPanel v-if="tab == 'partners'" />
       <TeamPanel v-if="tab == 'team'" />
+      <PlanPanel v-if="tab == 'plan'" />
     </div>
   </div>
 </template>
@@ -32,6 +33,7 @@ import NotificationPanel from "@/components/Admin/NotificationPanel";
 import SliderPanel from "@/components/Admin/SliderPanel";
 import PartnersPanel from "@/components/Admin/PartnersPanel";
 import TeamPanel from "@/components/Admin/TeamPanel";
+import PlanPanel from "@/components/Admin/PlanPanel";
 
 import { mapGetters } from "vuex";
 export default {
@@ -43,6 +45,7 @@ export default {
     SliderPanel,
     PartnersPanel,
     TeamPanel,
+    PlanPanel,
   },
   data() {
     return {
@@ -52,6 +55,7 @@ export default {
         { name: "Слайдер", value: "slider" },
         { name: "Партнери", value: "partners" },
         { name: "Команда", value: "team" },
+        { name: "Підписки", value: "plan" },
       ],
       tab: "notification",
     };

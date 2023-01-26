@@ -2,38 +2,59 @@
   <div class="tab">
     <div class="tab__item">
       <div class="section">
-        <span class="section__title">Команда</span>
+        <span class="section__title">Підписки</span>
         <div class="section__content">
-          <div class="add-team">
+          <div class="add-service">
             <div>
               <input
                 v-model="name"
                 class="admin-input"
                 type="text"
-                placeholder="ПІБ"
+                placeholder="Назва"
               />
               <input
-                v-model="job"
+                v-model="price"
                 class="admin-input"
                 type="text"
-                placeholder="Посада"
+                placeholder="Ціна"
               />
-              <UploadImg
-                :preview.sync="preview"
-                @picture="(el) => (picture = el)"
-              />
+              <div>
+                <input
+                  v-model="service"
+                  class="admin-input"
+                  type="text"
+                  placeholder="Послуга"
+                />
+                <button class="service-button" @click="addService">
+                  Добавити послугу
+                </button>
+              </div>
             </div>
             <button class="plus-button" @click="addItem"></button>
+          </div>
+          <div class="plans-preview">
+            <div class="service">
+              Назва: <span>{{ this.name }}</span>
+            </div>
+            <div class="service">
+              Ціна: <span>{{ this.price }}</span>
+            </div>
+            <div class="service">
+              Послуги:
+              <span v-for="(item, index) in serviceArray" :key="index"
+                >{{ item }} |
+              </span>
+            </div>
           </div>
           <div v-if="loader" class="loader-wrapper">
             <Loader />
           </div>
-          <table v-else class="team-table">
+          <table v-else class="plan-table">
             <thead>
-              <tr class="team-thed">
-                <td class="text-left">ПІБ</td>
-                <td class="text-center">Посада</td>
-                <td class="text-center">Фото</td>
+              <tr class="plan-thed">
+                <td class="text-left">Назва</td>
+                <td class="text-center">Ціна</td>
+                <td class="text-center">Послуги</td>
                 <td></td>
               </tr>
             </thead>
@@ -41,9 +62,11 @@
             <tbody>
               <tr v-for="item in items" :key="item._id">
                 <td class="text-left">{{ item.name }}</td>
-                <td class="text-center">{{ item.job }}</td>
+                <td class="text-center">{{ item.price }}</td>
                 <td class="text-center">
-                  <img :src="`http://localhost:8080/${item.picture}`" />
+                  <div v-for="(plan, index) in item.plans" :key="index">
+                    {{ plan }}
+                  </div>
                 </td>
                 <td class="text-right">
                   <button
@@ -66,7 +89,7 @@ import Loader from "@/components/Loader";
 import { dateParse } from "~/utils/dateParse.js";
 import UploadImg from "../UploadImg.vue";
 export default {
-  name: "TeamPanel",
+  name: "PlanPanel",
   components: { Loader, UploadImg },
   data() {
     return {
@@ -75,15 +98,23 @@ export default {
       picture: "",
       preview: "",
       name: "",
-      job: "",
+      price: "",
+      service: "",
+      serviceArray: [],
     };
   },
   methods: {
+    addService() {
+      if (this.service) {
+        this.serviceArray.push(this.service);
+        this.service = "";
+      }
+    },
     dateParse,
     async fetchItems() {
       try {
         this.loader = true;
-        const { data } = await axios.get("http://localhost:8080/api/team");
+        const { data } = await axios.get("http://localhost:8080/api/plan");
         this.items = data;
         this.loader = false;
       } catch (error) {
@@ -96,20 +127,19 @@ export default {
 
         const formData = new FormData();
         formData.append("name", this.name);
-        formData.append("job", this.job);
-        formData.append("picture", this.picture);
+        formData.append("price", this.price);
+        formData.append("plans", this.serviceArray);
 
         const { data } = await axios({
           method: "post",
-          url: "http://localhost:8080/api/team",
+          url: "http://localhost:8080/api/plan",
           data: formData,
         });
 
         this.items = data;
-        this.picture = "";
-        this.preview = "";
         this.name = "";
-        this.job = "";
+        this.price = "";
+        this.serviceArray = [];
 
         this.loader = false;
       } catch (error) {
@@ -120,7 +150,7 @@ export default {
       try {
         this.loader = true;
         const { data } = await axios.delete(
-          `http://localhost:8080/api/team/${id}`
+          `http://localhost:8080/api/plan/${id}`
         );
         this.items = data;
         this.loader = false;
@@ -137,22 +167,24 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/admin/admin.scss";
-.team-table {
+.plan-table {
   width: 100%;
 
-  tbody img {
-    height: 50px;
-  }
-
-  td {
-    width: 24%;
+  tbody td {
+    padding-bottom: 16px;
   }
 
   thead td {
     padding-bottom: 16px;
   }
 }
-.add-team {
+.service-button {
+  border: 0;
+  padding: 7px 15px;
+  color: #fff;
+  background: rgb(42, 227, 237);
+}
+.add-service {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -160,7 +192,7 @@ export default {
   margin-bottom: 25px;
   .admin-input {
     margin-right: 25px;
-    width: 300px;
+    width: 200px;
   }
 
   div {
@@ -168,5 +200,11 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.plans-preview {
+  margin: 24px 0;
+  padding: 16px;
+  border: 2px solid #000;
 }
 </style>
