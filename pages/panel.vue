@@ -20,6 +20,8 @@
       <NotificationPanel v-if="tab == 'notification'" />
       <GalleryPanel v-if="tab == 'gallery'" />
       <SliderPanel v-if="tab == 'slider'" />
+      <PartnersPanel v-if="tab == 'partners'" />
+      <TeamPanel v-if="tab == 'team'" />
     </div>
   </div>
 </template>
@@ -28,18 +30,28 @@
 import GalleryPanel from "@/components/Admin/GalleryPanel";
 import NotificationPanel from "@/components/Admin/NotificationPanel";
 import SliderPanel from "@/components/Admin/SliderPanel";
+import PartnersPanel from "@/components/Admin/PartnersPanel";
+import TeamPanel from "@/components/Admin/TeamPanel";
 
 import { mapGetters } from "vuex";
 export default {
   layout: "AdminLayout",
   name: "panel",
-  components: { GalleryPanel, NotificationPanel, SliderPanel },
+  components: {
+    GalleryPanel,
+    NotificationPanel,
+    SliderPanel,
+    PartnersPanel,
+    TeamPanel,
+  },
   data() {
     return {
       tabsName: [
         { name: "Повідомлення", value: "notification" },
         { name: "Галерея", value: "gallery" },
         { name: "Слайдер", value: "slider" },
+        { name: "Партнери", value: "partners" },
+        { name: "Команда", value: "team" },
       ],
       tab: "notification",
     };

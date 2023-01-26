@@ -12,7 +12,7 @@
             :class="{ new: item.new }"
             v-for="item in getSortedNotification"
             :key="item._id"
-            @mouseleave="updateNotification(item._id, item.new)"
+            @mouseleave="updateItem(item._id, item.new)"
             @click.stop="item.open = !item.open"
           >
             <div class="notificaion-item__heeader">
@@ -25,7 +25,7 @@
                 </div>
                 <button
                   class="delete-button"
-                  @click.stop="deleteNotification(item._id)"
+                  @click.stop="deleteItem(item._id)"
                 ></button>
               </div>
             </div>
@@ -58,28 +58,28 @@ export default {
   comments: { Loader },
   data() {
     return {
-      notification: [],
+      items: [],
       loader: false,
       activeNotification: false,
     };
   },
   computed: {
     getSortedNotification() {
-      for (const item in this.notification) {
-        this.$set(this.notification[item], "open", false);
+      for (const item in this.items) {
+        this.$set(this.items[item], "open", false);
       }
-      return orderBy(this.notification, "date", "desc");
+      return orderBy(this.items, "date", "desc");
     },
   },
   methods: {
     dateParse,
-    async fetchNotification() {
+    async fetchItems() {
       try {
         this.loader = true;
         const { data } = await axios.get(
           "http://localhost:8080/api/contact-form"
         );
-        this.notification = data;
+        this.items = data;
         for (const item in data) {
           if (data[item].new) {
             this.activeNotification = true;
@@ -92,7 +92,7 @@ export default {
         console.log(error);
       }
     },
-    async updateNotification(id, isNew) {
+    async updateItem(id, isNew) {
       try {
         if (isNew) {
           const { data } = await axios.put(
@@ -101,7 +101,7 @@ export default {
               new: false,
             }
           );
-          this.notification = data;
+          this.items = data;
         }
         for (const item in data) {
           if (data[item].new) {
@@ -114,13 +114,13 @@ export default {
       }
     },
 
-    async deleteNotification(id) {
+    async deleteItem(id) {
       try {
         this.loader = true;
         const { data } = await axios.delete(
           `http://localhost:8080/api/contact-form/${id}`
         );
-        this.notification = data;
+        this.items = data;
         this.loader = false;
       } catch (error) {
         console.log(error);
@@ -129,7 +129,7 @@ export default {
   },
 
   mounted() {
-    this.fetchNotification();
+    this.fetchItems();
   },
 };
 </script>

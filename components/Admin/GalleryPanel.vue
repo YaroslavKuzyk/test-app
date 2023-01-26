@@ -69,17 +69,10 @@
                   </div>
                 </td>
                 <td class="text-center">
-                  <div class="upload-file">
-                    <label for="file">
-                      <img v-if="galleryPreview" :src="galleryPreview" alt="" />
-                      <img
-                        v-else
-                        src="@/assets/image/upload-image.png"
-                        alt="upload"
-                      />
-                    </label>
-                    <input @change="saveImg" type="file" id="file" />
-                  </div>
+                  <UploadImg
+                    :preview.sync="preview"
+                    @picture="(el) => (picture = el)"
+                  />
                 </td>
                 <td></td>
                 <td class="text-right">
@@ -127,10 +120,11 @@ import axios from "axios";
 import Loader from "@/components/Loader";
 import { dateParse } from "~/utils/dateParse.js";
 import orderBy from "lodash/orderBy";
+import UploadImg from "../UploadImg.vue";
 
 export default {
   name: "GalleryPanel",
-  components: { Loader },
+  components: { Loader, UploadImg },
   data() {
     return {
       categories: [],
@@ -139,8 +133,8 @@ export default {
       selectCategory: "Виберіть категорію",
       loader: false,
       openSelect: false,
-      galleryPreview: "",
-      galleryPicture: "",
+      preview: "",
+      picture: "",
     };
   },
   computed: {
@@ -150,21 +144,6 @@ export default {
   },
   methods: {
     dateParse,
-    saveImg(event) {
-      let input = event.target;
-
-      if (input.files && input.files[0]) {
-        let reader = new FileReader();
-
-        reader.onload = (e) => {
-          this.galleryPreview = e.target.result;
-        };
-
-        reader.readAsDataURL(input.files[0]);
-
-        this.galleryPicture = input.files[0];
-      }
-    },
     async fetchCategories() {
       try {
         this.loader = true;
@@ -227,7 +206,7 @@ export default {
         ) {
           this.loader = true;
           const formData = new FormData();
-          formData.append("picture", this.galleryPicture);
+          formData.append("picture", this.picture);
           formData.append("category", this.selectCategory);
           formData.append("date", Date.now());
 
@@ -241,8 +220,8 @@ export default {
           });
 
           this.gallery = data;
-          this.galleryPicture = "";
-          this.galleryPreview = "";
+          this.picture = "";
+          this.preview = "";
           this.selectCategory = "Виберіть категорію";
           this.loader = false;
         }
