@@ -1,13 +1,13 @@
 <template>
-  <div class="progress-wrap">
-    <div class="progress-line"></div>
-    <div class="progress-persent">
-       <div class="progress-text">
+     <div class="progress-wrap" >
+    <div class="progress-line" ></div>
+    <div class="progress-persent" v-for="item in progressObject">
+       <div class="progress-text" >
         <h3>
-          sdfs
+          {{item.name}}
         </h3>
         <h3>
-          sdf
+          {{item.width}}
         </h3>
       </div>
     </div>
@@ -16,7 +16,16 @@
   
 <script>
 export default {
-  name: 'Progress',
+  name: 'ProgressBar',
+  data() {
+    return{
+      progressObject:[
+      {name:'BRANDING', width: '90%'},
+      {name:'DESIGN', width: '80%'},
+      {name:'DEVELOPMENT', width: '85%'},
+    ]
+    }
+  }
 }
 </script>
   
@@ -35,7 +44,7 @@ export default {
   height: 2px;
   background: #1D1D1D;
   top: 0;
-  width: v-bind(width);
+  width: 33%;
 }
 .progress-text{
   display: flex;

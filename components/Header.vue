@@ -3,7 +3,7 @@
         <div>
             <img src="../assets/image/LOGO.png">
         </div>
-        <div class="header-items">
+        <div class="header-item">
             <a :href="item.link" v-for="item in links" :key="item.name">{{item.name}}</a>
         </div>
     </header>
@@ -35,7 +35,7 @@ export default {
     width: 100%;
     background: #fff;
 }
-.header-items{
+.header-item{
 
     a{
         text-decoration: none;

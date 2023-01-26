@@ -1,11 +1,11 @@
 <template>
   <div>
     <section class="prevue">
-      <div class="prevue-txt">
+      <div class="prevue-logo">
         <h1>
           O...marketing
         </h1>
-        <p class="prevue-logo2">
+        <p class="prevue-subscribe">
           DIGITAL MARKETING AGENCY
         </p>
       </div>
@@ -17,7 +17,7 @@
       <Title md>
         About us
       </Title>
-      <div class="about-text">
+      <div class="about-item">
         <p>
           Практика показывает, что большие продажи далеко не всегда зависят от того, сколько вы потратите на продвижение сайта и рекламную кампанию. Значительно сильнее конечный результат зависит от правильной организации кампании. Мы достигаем максимальной эффективности и помогаем сберечь бюджеты наших клиентов, используя стратегический интернет-маркетинг.
         </p>
@@ -25,6 +25,7 @@
           Определяем цели продвижения — что наш клиент хочет получить, когда работа будет сделана. Проводим маркетинговые исследования рынка, целевой аудитории, конкурентной среды. При разработке стратегии учитываем все имеющиеся данные.
         </p>
       </div>
+      <ProgressBar v-bind:style="{width: BRANDING+'%'}"></ProgressBar>
     </section>
     
   </div>
@@ -32,21 +33,13 @@
 
 <script>
 import Title from "../components/Title.vue";
-import Progress from '../components/ProgressBar.vue';
+import ProgressBar from '../components/ProgressBar.vue';
 export default {
   name: "IndexPage",
   components: {
     Title,
-    Progress,
+    ProgressBar,
   },
-  data: {
-    progressObject:{
-      BRANDING: 90,
-      DESIGN: 80,
-      DEVELOPMENT: 85
-    }
-  }
-  
 };
 
 </script>
@@ -70,14 +63,14 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.prevue-txt{
+.prevue-logo{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-top: 250px;
 }
-.prevue-logo2{
+.prevue-subscribe{
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -107,7 +100,7 @@ h1{
   background: #F6F8FA;
   padding: 150px 0;
 }
-.about-text{
+.about-item{
   max-width: 770px;
    p:last-child{
     padding-top: 20px;
