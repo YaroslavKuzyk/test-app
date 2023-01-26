@@ -2,21 +2,21 @@
   <div class="tab">
     <div class="tab__item">
       <div class="section">
-        <span class="section__title">Слайдер</span>
+        <span class="section__title">Команда</span>
         <div class="section__content">
-          <div class="add-slider">
+          <div class="add-team">
             <div>
               <input
-                v-model="title"
+                v-model="name"
                 class="admin-input"
                 type="text"
-                placeholder="Додати назву"
+                placeholder="ПІБ"
               />
               <input
-                v-model="text"
+                v-model="job"
                 class="admin-input"
                 type="text"
-                placeholder="Додати текст"
+                placeholder="Посада"
               />
               <UploadImg
                 :preview.sync="preview"
@@ -28,26 +28,24 @@
           <div v-if="loader" class="loader-wrapper">
             <Loader />
           </div>
-          <table v-else class="slider-table">
+          <table v-else class="team-table">
             <thead>
-              <tr class="slider-thed">
-                <td class="text-left">Заголовок</td>
-                <td class="text-center">Текст</td>
-                <td class="text-center">Дата</td>
-                <td class="text-center">Картинка</td>
+              <tr class="team-thed">
+                <td class="text-left">ПІБ</td>
+                <td class="text-center">Посада</td>
+                <td class="text-center">Фото</td>
                 <td></td>
               </tr>
             </thead>
 
             <tbody>
-              <tr v-for="item in sortSlider" :key="item._id">
-                <td class="text-left">{{ item.title }}</td>
-                <td class="text-center">{{ item.subtitle }}</td>
-                <td class="text-center">{{ dateParse(item.date) }}</td>
+              <tr v-for="item in items" :key="item._id">
+                <td class="text-left">{{ item.name }}</td>
+                <td class="text-center">{{ item.job }}</td>
                 <td class="text-center">
                   <img :src="`http://localhost:8080/${item.picture}`" />
                 </td>
-                <td>
+                <td class="text-right">
                   <button
                     class="delete-button"
                     @click="deleteItem(item._id)"
@@ -66,33 +64,26 @@
 import axios from "axios";
 import Loader from "@/components/Loader";
 import { dateParse } from "~/utils/dateParse.js";
-import orderBy from "lodash/orderBy";
 import UploadImg from "../UploadImg.vue";
-
 export default {
-  name: "SliderPanel",
+  name: "TeamPanel",
   components: { Loader, UploadImg },
   data() {
     return {
       items: [],
       loader: false,
-      preview: "",
       picture: "",
-      title: "",
-      text: "",
+      preview: "",
+      name: "",
+      job: "",
     };
-  },
-  computed: {
-    sortSlider() {
-      return orderBy(this.items, "date", "desc");
-    },
   },
   methods: {
     dateParse,
     async fetchItems() {
       try {
         this.loader = true;
-        const { data } = await axios.get("http://localhost:8080/api/carusel");
+        const { data } = await axios.get("http://localhost:8080/api/team");
         this.items = data;
         this.loader = false;
       } catch (error) {
@@ -104,22 +95,21 @@ export default {
         this.loader = true;
 
         const formData = new FormData();
-        formData.append("title", this.title);
-        formData.append("subtitle", this.text);
-        formData.append("date", Date.now());
+        formData.append("name", this.name);
+        formData.append("job", this.job);
         formData.append("picture", this.picture);
 
         const { data } = await axios({
           method: "post",
-          url: "http://localhost:8080/api/carusel",
+          url: "http://localhost:8080/api/team",
           data: formData,
         });
 
         this.items = data;
-        this.preview = "";
         this.picture = "";
-        this.text = "";
-        this.title = "";
+        this.preview = "";
+        this.name = "";
+        this.job = "";
 
         this.loader = false;
       } catch (error) {
@@ -130,7 +120,7 @@ export default {
       try {
         this.loader = true;
         const { data } = await axios.delete(
-          `http://localhost:8080/api/carusel/${id}`
+          `http://localhost:8080/api/team/${id}`
         );
         this.items = data;
         this.loader = false;
@@ -147,7 +137,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/admin/admin.scss";
-.slider-table {
+.team-table {
   width: 100%;
 
   tbody img {
@@ -162,7 +152,7 @@ export default {
     padding-bottom: 16px;
   }
 }
-.add-slider {
+.add-team {
   display: flex;
   align-items: center;
   justify-content: space-between;
