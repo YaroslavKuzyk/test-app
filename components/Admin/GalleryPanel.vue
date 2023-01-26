@@ -69,8 +69,8 @@
                   </div>
                 </td>
                 <td class="text-center">
-                  <div class="upload-gallery">
-                    <label for="gallery">
+                  <div class="upload-file">
+                    <label for="file">
                       <img v-if="galleryPreview" :src="galleryPreview" alt="" />
                       <img
                         v-else
@@ -78,7 +78,7 @@
                         alt="upload"
                       />
                     </label>
-                    <input @change="saveImg" type="file" id="gallery" />
+                    <input @change="saveImg" type="file" id="file" />
                   </div>
                 </td>
                 <td></td>

@@ -2,6 +2,7 @@
   <div v-if="getAuth" class="panel">
     <div class="tabs-name">
       <ul>
+        <li @click="$router.push('/')">На сайт</li>
         <li
           v-for="item in tabsName"
           :key="item.value"
@@ -18,6 +19,7 @@
     <div class="scroller">
       <NotificationPanel v-if="tab == 'notification'" />
       <GalleryPanel v-if="tab == 'gallery'" />
+      <SliderPanel v-if="tab == 'slider'" />
     </div>
   </div>
 </template>
@@ -25,16 +27,19 @@
 <script>
 import GalleryPanel from "@/components/Admin/GalleryPanel";
 import NotificationPanel from "@/components/Admin/NotificationPanel";
+import SliderPanel from "@/components/Admin/SliderPanel";
+
 import { mapGetters } from "vuex";
 export default {
   layout: "AdminLayout",
   name: "panel",
-  components: { GalleryPanel, NotificationPanel },
+  components: { GalleryPanel, NotificationPanel, SliderPanel },
   data() {
     return {
       tabsName: [
         { name: "Повідомлення", value: "notification" },
         { name: "Галерея", value: "gallery" },
+        { name: "Слайдер", value: "slider" },
       ],
       tab: "notification",
     };
