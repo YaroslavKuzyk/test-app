@@ -1,15 +1,20 @@
 .panel {
   display: flex;
-  padding: 15px 0 15px 25px;
+  flex-direction: column;
+  padding: 15px 24px 15px;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 .tabs-name {
-  width: 30%;
+  width: 100%;
+
+  ul {
+    display: flex;
+  }
 }
 
 .scroller {
-  height: calc(100vh - 30px);
-  width: 70%;
-  overflow: auto;
+  width: 100%;
   padding-right: 25px;
 }
 
@@ -53,6 +58,7 @@
 }
 
 .plus-button {
+  flex-shrink: 0;
   background: rgb(42, 227, 237);
   width: 30px;
   height: 30px;
@@ -117,7 +123,7 @@
 
 .admin-input {
   height: 28px;
-  width: 100%;
+  width: calc(100% - 22px);
   border: 1px solid rgb(120, 120, 120);
   border-radius: 8px;
   padding: 0 10px;
@@ -129,7 +135,6 @@
 
   .admin-input {
     margin-right: 15px;
-    max-width: 550px;
   }
 }
 .category-list__item {
@@ -195,7 +200,7 @@
   }
 }
 
-.upload-gallery {
+.upload-file {
   img {
     width: 80px;
     height: 80px;
@@ -214,30 +219,29 @@
   padding-bottom: 20px;
 }
 .tabs-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    padding: 15px 45px;
+    cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    ul {
-        list-style: none;
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    li {
-        padding: 15px 45px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        &:hover {
-            background: rgb(241, 241, 241);
-        }
-
-        img {
-            margin-left: 15px;
-        }
-        
+    &:hover {
+      background: rgb(241, 241, 241);
     }
+
+    img {
+      margin-left: 15px;
+    }
+  }
 }
