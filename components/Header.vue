@@ -1,26 +1,33 @@
 <template>
-    <div class="header_wrap">
+    <header class="header-wrap">
         <div>
             <img src="../assets/image/LOGO.png">
         </div>
-        <div class="header_items">
-            <a href="#">HOME</a>
-            <a href="#">ABOUT US</a>
-            <a href="#">PORTFOLIO</a>
-            <a href="#">OUR TEAM</a>
-            <a href="#">BLOG</a>
-            <a href="#">CONTACT</a>
+        <div class="header-items">
+            <a :href="item.link" v-for="item in links" :key="item.name">{{item.name}}</a>
         </div>
-    </div>
+    </header>
 </template>
 
 <script>
 export default {
   name: 'Header',
+  data(){
+    return {
+        links: [
+            {name: "home", link: '#'},
+            {name: "ABOUT US", link: '#'},
+            {name: "PORTFOLIO", link: '#'},
+            {name: "OUR TEAM", link: '#'},
+            {name: "BLOG", link: '#'},
+            {name: "CONTACT", link: '#'}
+        ]
+    }
+  }
 }
 </script>
 <style lang="scss">
-.header_wrap{
+.header-wrap{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -28,7 +35,7 @@ export default {
     width: 100%;
     background: #fff;
 }
-.header_items{
+.header-items{
 
     a{
         text-decoration: none;
@@ -42,6 +49,7 @@ export default {
         padding: 15px;
         transition: all .3s;
         border-bottom: 1px solid transparent;
+        text-transform: uppercase;
         &:first-child {
             border-bottom: 1px solid #FCBB08;
         }

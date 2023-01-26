@@ -1,19 +1,15 @@
 <template>
   <div>
-    <header>
-      <HEAD>
-      </HEAD>
-    </header>
     <section class="prevue">
-      <div class="prevue_txt">
+      <div class="prevue-txt">
         <h1>
           O...marketing
         </h1>
-        <p class="prevue_logo2">
+        <p class="prevue-logo2">
           DIGITAL MARKETING AGENCY
         </p>
       </div>
-      <div class="prevue_mouse">
+      <div class="prevue-mouse">
         <img src="../assets/image/mouse.png">
       </div>
     </section>
@@ -21,7 +17,7 @@
       <Title md>
         About us
       </Title>
-      <div class="about_text">
+      <div class="about-text">
         <p>
           Практика показывает, что большие продажи далеко не всегда зависят от того, сколько вы потратите на продвижение сайта и рекламную кампанию. Значительно сильнее конечный результат зависит от правильной организации кампании. Мы достигаем максимальной эффективности и помогаем сберечь бюджеты наших клиентов, используя стратегический интернет-маркетинг.
         </p>
@@ -30,19 +26,26 @@
         </p>
       </div>
     </section>
+    
   </div>
 </template>
 
 <script>
-
-import HEAD from '../components/Header.vue';
 import Title from "../components/Title.vue";
+import Progress from '../components/ProgressBar.vue';
 export default {
   name: "IndexPage",
   components: {
     Title,
-    HEAD
+    Progress,
   },
+  data: {
+    progressObject:{
+      BRANDING: 90,
+      DESIGN: 80,
+      DEVELOPMENT: 85
+    }
+  }
   
 };
 
@@ -67,14 +70,14 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.prevue_txt{
+.prevue-txt{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-top: 250px;
 }
-.prevue_logo2{
+.prevue-logo2{
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -94,7 +97,7 @@ h1{
   text-align: center;
   color: #FFFFFF;
 }
-.prevue_mouse{
+.prevue-mouse{
   padding-top: 100px;
 }
 .about{
@@ -104,7 +107,7 @@ h1{
   background: #F6F8FA;
   padding: 150px 0;
 }
-.about_text{
+.about-text{
   max-width: 770px;
    p:last-child{
     padding-top: 20px;
