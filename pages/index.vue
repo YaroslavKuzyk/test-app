@@ -25,7 +25,7 @@
           Определяем цели продвижения — что наш клиент хочет получить, когда работа будет сделана. Проводим маркетинговые исследования рынка, целевой аудитории, конкурентной среды. При разработке стратегии учитываем все имеющиеся данные.
         </p>
       </div>
-      <ProgressBar v-bind:style="{width: BRANDING+'%'}"></ProgressBar>
+      <ProgressBar :style="width = progressObject"></ProgressBar>
     </section>
     
   </div>
@@ -40,6 +40,7 @@ export default {
     Title,
     ProgressBar,
   },
+  
 };
 
 </script>

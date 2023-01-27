@@ -36,7 +36,6 @@ export default {
     background: #fff;
 }
 .header-item{
-
     a{
         text-decoration: none;
         color: #373A39;
