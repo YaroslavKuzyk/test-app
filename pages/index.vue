@@ -1,15 +1,15 @@
 <template>
   <div>
-    <section class="prevue">
-      <div class="prevue-logo">
+    <section class="preview">
+      <div class="preview-logo">
         <h1>
           O...marketing
         </h1>
-        <p class="prevue-subscribe">
+        <p class="preview-subscribe">
           DIGITAL MARKETING AGENCY
         </p>
       </div>
-      <div class="prevue-mouse">
+      <div class="preview-mouse">
         <img src="../assets/image/mouse.png">
       </div>
     </section>
@@ -25,7 +25,7 @@
           Определяем цели продвижения — что наш клиент хочет получить, когда работа будет сделана. Проводим маркетинговые исследования рынка, целевой аудитории, конкурентной среды. При разработке стратегии учитываем все имеющиеся данные.
         </p>
       </div>
-      <ProgressBar :style="width = progressObject"></ProgressBar>
+      <ProgressBar  :style="width = progressObject "></ProgressBar>
     </section>
     
   </div>
@@ -40,7 +40,15 @@ export default {
     Title,
     ProgressBar,
   },
-  
+  data:{
+    return:{
+      progressObject: {
+      BRANDING: '90px',
+      DESIGN: 80,
+      DEVELOPMENT: 85
+    }
+    }
+  }
 };
 
 </script>
@@ -51,7 +59,7 @@ export default {
   font-family: 'SF Pro Display';
   font-style: normal;
 }
-.prevue{
+.preview{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,14 +72,14 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
 }
-.prevue-logo{
+.preview-logo{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-top: 250px;
 }
-.prevue-subscribe{
+.preview-subscribe{
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -91,7 +99,7 @@ h1{
   text-align: center;
   color: #FFFFFF;
 }
-.prevue-mouse{
+.preview-mouse{
   padding-top: 100px;
 }
 .about{
