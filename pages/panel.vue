@@ -37,7 +37,7 @@ import PlanPanel from "@/components/Admin/PlanPanel";
 
 import { mapGetters } from "vuex";
 export default {
-  layout: "AdminLayout",
+  layout: "adminLayout",
   name: "panel",
   components: {
     GalleryPanel,

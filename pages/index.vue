@@ -25,30 +25,62 @@
           Определяем цели продвижения — что наш клиент хочет получить, когда работа будет сделана. Проводим маркетинговые исследования рынка, целевой аудитории, конкурентной среды. При разработке стратегии учитываем все имеющиеся данные.
         </p>
       </div>
-      <ProgressBar  :style="width = progressObject "></ProgressBar>
     </section>
-    
+    <section class="expertise">
+      <Title lg>
+        Our Expertise
+      </Title>
+      <div class="expertise-wrap">
+        <ProgressBar/>
+        <div class="about-item">
+          <p>
+            В стратегию интернет-маркетинга входит создание имиджевой и рекламной концепции, разработка контент-стратегии, распределение использования различных каналов коммуникации.
+          </p>
+          <p>
+            Реализуем принятую стратегию, отслеживая промежуточные результаты, и корректируя будущие действия с учетом изменений. Главной целью в этом процессе для нас является конечный результат, а не следование планам.
+          </p>
+        </div>
+      </div>
+    </section>
+    <ServiceCard/>
+    <section>
+      <div class="marketing">
+        <img src="../assets/image/img.jpg">
+        <div class="marketing-text">
+          <Title lg>
+            Let’s make magic.
+          </Title>
+          <div>
+            <p>
+            Маркетинговое агентство MGN: полный комплекс маркетинговых, рекламных и дизайнерских услуг в Харькове и Украине: маркетинговые исследования рынков, товаров, потребителей, планирование комплекса маркетинга, реклама, проведение рекламных кампаний, брендинг, рекламный дизайн, pr.
+          </p>
+          <p>
+            Нами накоплен немалый опыт работы в реальном бизнесе, в самых различных отраслях – от недвижимости до аптечного и медицинского бизнеса. Мы не просто беремся решать задачи наших клиентов, мы сами вышли из бизнес-среды и понимаем суть бизнес-процессов.
+          </p>
+          <p>
+            Мы говорим с бизнесом на одном языке!
+          </p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import Title from "../components/Title.vue";
 import ProgressBar from '../components/ProgressBar.vue';
+import Gallery from "../components/Gallery.vue";
+import ServiceCard from "../components/ServiceCard.vue";
 export default {
   name: "IndexPage",
   components: {
     Title,
     ProgressBar,
+    Gallery,
+    ServiceCard,
   },
-  data:{
-    return:{
-      progressObject: {
-      BRANDING: '90px',
-      DESIGN: 80,
-      DEVELOPMENT: 85
-    }
-    }
-  }
 };
 
 </script>
@@ -112,7 +144,43 @@ h1{
 .about-item{
   max-width: 770px;
    p:last-child{
-    padding-top: 20px;
+    padding-top: 18px;
    }
+}
+.expertise{
+  padding: 140px 0 0 130px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.expertise-wrap{
+  padding-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.marketing{
+  display: flex;
+  align-items: center;
+  background: #F6F8FA;
+  margin-top: 180px;
+  img{
+    width: 705px;
+    height: 840px;
+  }
+  &-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    div{
+      padding-top: 80px;
+    }
+    p{
+      max-width: 470px;
+    }
+    p:nth-child(2n){
+      padding: 25px 0;
+    }
+  }
 }
 </style>

@@ -202,7 +202,7 @@ export default {
       try {
         if (
           this.selectCategory != "Виберіть категорію" &&
-          this.galleryPicture
+          this.picture
         ) {
           this.loader = true;
           const formData = new FormData();

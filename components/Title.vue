@@ -20,7 +20,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 h2{
     font-family: 'Montserrat';
     font-style: normal;

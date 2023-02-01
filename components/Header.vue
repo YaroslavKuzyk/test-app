@@ -34,6 +34,7 @@ export default {
     position: fixed;
     width: 100%;
     background: #fff;
+    z-index: 100;
 }
 .header-item{
     a{

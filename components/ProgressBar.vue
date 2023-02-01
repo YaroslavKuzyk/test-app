@@ -37,7 +37,7 @@ export default {
 .progress-wrap {
   width: 100%;
   position: relative;
-  margin-top: 40px;
+  height: 40px;
 }
 .progress-line {
   width: 370px;
