@@ -61,9 +61,11 @@
             Мы говорим с бизнесом на одном языке!
           </p>
           </div>
-          
         </div>
       </div>
+    </section>
+    <section>
+      <Gallery/>
     </section>
   </div>
 </template>
