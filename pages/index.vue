@@ -64,9 +64,16 @@
         </div>
       </div>
     </section>
-    <section>
+    <div>
       <Gallery/>
-    </section>
+      <div class="more-btn">
+        VIEW MORE PROJECTS
+      </div>
+    </div>
+    <div class="quote">
+      <p>«Неважно какую историю вы рассказываете, главное – сделайте своего покупателя героем»</p>
+      <span>Крис Броган</span>
+    </div>
   </div>
 </template>
 
@@ -183,6 +190,43 @@ h1{
     p:nth-child(2n){
       padding: 25px 0;
     }
+  }
+}
+.more-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background: #F6F8FA;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 1.2px;
+  color: #242121;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.quote{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 130px 0;
+  flex-direction: column;
+  p{
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 36px;
+    color: #242121;
+    padding-bottom: 50px;
+  }
+  span{
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 32px;
+    color: #9E9E9E;
   }
 }
 </style>
